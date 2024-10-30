@@ -1,0 +1,220 @@
+@import "globals.less";
+
+.animatedOut{
+    from { .opacity(1); }
+    to { .opacity(0); }
+}
+@keyframes animationOut {
+    .animatedOut;
+}
+@-webkit-keyframes animationOut {
+    .animatedOut;
+}
+@-ms-keyframes animationOut {
+    .animatedOut;
+}
+@-moz-keyframes animationOut {
+    .animatedOut;
+}
+//animated OUT -----------------------------
+
+.animatedIn{
+    from { .opacity(0); }
+    to { .opacity(1); }
+}
+@keyframes animationIn {
+    .animatedIn;
+}
+@-webkit-keyframes animationIn {
+    .animatedIn;
+}
+@-ms-keyframes animationIn {
+    .animatedIn;
+}
+@-moz-keyframes animationIn {
+    .animatedIn;
+}
+
+@leftStart:                     -100%;
+.animatedLeftToRight{
+    from {  left:            @leftStart; }
+    to {    left:            0; }
+}
+@keyframes animationLeftToRight {
+    .animatedLeftToRight;
+}
+@-webkit-keyframes animationLeftToRight {
+    .animatedLeftToRight;
+}
+@-ms-keyframes animationLeftToRight {
+    .animatedLeftToRight;
+}
+@-moz-keyframes animationLeftToRight {
+    .animatedLeftToRight;
+}
+
+
+.animatedLoading{
+    50% {
+        background-color:           rgba(221,130,54,1);
+        box-shadow:                 0 0 .3rem .2rem rgba(221,130,54,0.4);
+    }    
+}
+
+@keyframes animationLoading {
+    .animatedLoading;
+}
+@-webkit-keyframes animationLoading {
+    .animatedLoading;
+}
+@-ms-keyframes animationLoading {
+    .animatedLoading;
+}
+@-moz-keyframes animationLoading {
+    .animatedLoading;
+}
+
+.animatedRotateIntro{
+    0% {
+        .rotateSimple( 0 );
+    }
+    50% {
+        .rotateSimple( 140 );
+    }
+    100% {
+        .rotateSimple( 0 );
+    }
+}
+
+@keyframes animationRotateIntro {
+    .animatedRotateIntro;
+}
+@-webkit-keyframes animationRotateIntro {
+    .animatedRotateIntro;
+}
+@-ms-keyframes animationRotateIntro {
+    .animatedRotateIntro;
+}
+@-moz-keyframes animationRotateIntro {
+    .animatedRotateIntro;
+}
+
+.animatedBgPosition{
+    50% {
+        background-position: -6% top;
+    } 
+}
+
+@keyframes animationBgPosition {
+    .animatedBgPosition;
+}
+@-webkit-keyframes animationBgPosition {
+    .animatedBgPosition;
+}
+@-ms-keyframes animationBgPosition {
+    .animatedBgPosition;
+}
+@-moz-keyframes animationBgPosition {
+    .animatedBgPosition;
+}
+
+.animatedBgPosition1{
+    0% {
+     //background-position:                    200% top;   
+        //left:                       10%;
+       // .scale(1);
+    }
+    60% {
+        left:                       2%;
+        .scale(1.2);
+    }
+    100% {
+        //background-position: -200% top;
+        //left:                       10%;
+        .scale(1);
+    }
+}
+
+@keyframes animationBgPosition1 {
+    .animatedBgPosition1;
+}
+@-webkit-keyframes animationBgPosition1 {
+    .animatedBgPosition1;
+}
+@-ms-keyframes animationBgPosition1 {
+    .animatedBgPosition1;
+}
+@-moz-keyframes animationBgPosition1 {
+    .animatedBgPosition1;
+}
+
+.animatedBgPosition2{
+    0%{
+        //background-position:                    center top;
+        top:                                0;
+        left:                               0;
+        .scale(1);
+    }
+    25% {
+        //background-position: 40% 10%;
+        top:                                6%;
+        left:                               5%;
+        .scale(1.6);
+    }
+    50%{
+        .scale(1.2);
+    }
+    75% {
+        top:                                2%;
+        left:                               -2%;
+        .scale(1.6);
+    }
+    100%{
+        //background-position:                    center top;
+        top:                                0%;
+        left:                               0%;
+        .scale(1);
+    }
+}
+
+@keyframes animationBgPosition2 {
+    .animatedBgPosition2;
+}
+@-webkit-keyframes animationBgPosition2 {
+    .animatedBgPosition2;
+}
+@-ms-keyframes animationBgPosition2 {
+    .animatedBgPosition2;
+}
+@-moz-keyframes animationBgPosition2 {
+    .animatedBgPosition2;
+}
+
+.animatedBgPosition6{
+    0% {
+        //background-position:                    -122% top;
+        top:                                0%;
+        left:                               -40%;
+        .scale(1);
+    }
+    30%{.scale(1.2);}
+    100% {
+        top:                                6%;
+        left:                               90%;
+        //background-position: 273% top;
+        .scale(1);
+    }
+}
+
+@keyframes animationBgPosition6 {
+    .animatedBgPosition6;
+}
+@-webkit-keyframes animationBgPosition6 {
+    .animatedBgPosition6;
+}
+@-ms-keyframes animationBgPosition6 {
+    .animatedBgPosition6;
+}
+@-moz-keyframes animationBgPosition6 {
+    .animatedBgPosition6;
+}

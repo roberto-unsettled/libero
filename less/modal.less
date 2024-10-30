@@ -1,0 +1,97 @@
+@import "mixin.less";
+@import "fonts.less";
+@colorNaranja:                      #dd8236;
+.blur{
+    -webkit-filter: blur(3px);
+    -moz-filter:    blur(3px);
+    filter:         blur(3px);
+    .transition( filter .5s);
+}
+#modalContainer {
+    display:                        none;
+    .size;
+    position:                       fixed;
+    top:                            0;
+    left:                           0;
+    &.md-show {
+        display:                    block;
+        z-index:                    2000;
+        .md-modal {
+            .opacity(1);
+        }
+        //.animationSimple( animationIn 400ms forwards linear 200ms 1 );
+    }
+}
+
+//.md-modal{}
+.md-modal {
+    .fontMedium;
+    .opacity( 0 );
+    .transform(translateX(-50%) translateY(-50%) );
+    .box-shadow( 0 14px 34px -11px rgba(221,130,54,1) );
+    .transition( .4s all ease-in .2s );
+    line-height:                    2.3vw;
+    font-size:                      1.7vw;
+    color:                          white;
+    position:                       fixed;
+    background-color:               @colorNaranja;
+    top:                            50%;
+    left:                           50%;
+    width:                          50%;
+    max-width:                      50vw;
+    //padding:                        6vw;
+    padding:                        12vh 0vh;
+    min-width:                      32vw;
+    height:                         auto;
+    -webkit-backface-visibility:    hidden;
+    -moz-backface-visibility:       hidden;
+    backface-visibility:            hidden;
+    .error {
+        padding-left:               14vh;
+    }
+}
+
+#closeModal {
+    .absoluteTopRight(2vw,2vw);
+    .size(3vw,3vw);
+    background:                     url(../img/close.png) no-repeat transparent center center;
+    background-size:                contain;
+    cursor:                         pointer;
+}
+
+.finPartido, #finishedTitle {
+    text-align:                     center;
+    
+}
+#finishedTitle {
+    .fontLight;
+    margin-top:                     1.1vh;
+    padding-bottom: 9vh;
+}
+
+.buttonModal{
+    border:                         1px solid white;
+    color:                          white;
+    border-radius:                  4vw;
+    .fontLight;
+    font-size:                      1.2vw;
+    height:                         5vw;
+    width:                          20.3vw;
+    text-align:                     center;
+    line-height:                    5vw;
+    position:                       absolute;
+    bottom:                         7vh;
+    .transition( .5s all ease-in );
+    &:hover {
+        color:                      @colorNaranja;
+        background-color:           white;
+    }
+}
+
+@distanceButtonModal:               3.4vw;
+#repeatSongModal{
+    left:                           @distanceButtonModal;
+}
+#nextSongModal {
+    right:                          @distanceButtonModal;
+}

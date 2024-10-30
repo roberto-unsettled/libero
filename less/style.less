@@ -1,0 +1,752 @@
+// out: ../css/style.css, compress: true
+
+@import 'globals.less';
+@import "animations.less"; 
+@import "modal.less";
+@import "check.less";
+@import "select.less";
+
+@timesRotate:                       2;
+@timeRotateIntro:                   4200ms;
+@delayRotateIntro:                  1000ms;
+ 
+@timeFade:                          400ms;
+
+@delayFadeStep2:                    60ms;
+@delayExplanation1Step2:            @delayFadeStep2 + @timeFade + 900; 
+
+@delayRotateIntro:                  @delayExplanation1Step2 + @timeFade + 600;
+
+@delayExplanation1ButtonStep2:      @delayExplanation1Step2 + ((@timeRotateIntro * @timesRotate )+  @delayRotateIntro );
+ 
+
+html { 
+    font-size: 5px;
+}  
+ 
+body{
+    .fontNormal;
+    .size;
+    .absoluteTopLeft; 
+    background-color:               #f2f1e4;
+    //flex-flow: column nowrap; justify-content: center; align-items: center; align-content: stretch;
+    
+} //body
+.sizedCenter { 
+    .size(@sizeWRem,@sizeHRem);
+    position:                       absolute;
+      margin:                       auto; 
+      top:                          0;
+      left:                         0;
+      bottom:                       0;
+      right:                        0;
+      overflow: 					hidden;
+} 
+
+.textColor {
+    color:                          @colorNaranja;
+}
+
+.transparent {
+    .opacity( 0.4 ); 
+}
+
+#wrapper {
+  .absoluteTopLeft;
+  .size; 
+  overflow:                         hidden;
+    &.radio {
+        #intro {
+            opacity: 0;
+            z-index: 10;
+        }
+        #radio{
+            opacity: 1;
+            z-index: 80;
+        }
+    } //.radio
+} //wrapper
+
+#intro {
+    .absoluteTopLeft;
+    .size;
+    //background-image:               url('../img/intro/bg.png');
+    background-color:               @grisBg;
+    background-position:            center top;
+    background-repeat:              no-repeat;
+    background-size:                110%;
+    z-index:                        80;
+    transition:                     opacity @timeFade ease-in;
+    //.animationSimple( animationBgPosition 17300ms linear forwards 0ms infinite );
+    
+    &.step1 {
+        #tituloIntro {
+            background-image:               url('../img/intro/titulo.png');
+        }
+        #startContainer {
+            display:                        block;
+        }   
+    } //step1
+    &.step2 {
+        #step1 {
+            z-index:                        0;
+        }
+        
+        #sintonizeIntro {
+            .animationSimple( animationRotateIntro @timeRotateIntro linear forwards @delayRotateIntro @timesRotate );
+        }
+        #step2, #explanationDial, #okDial{
+            opacity:                        1;
+        } 
+        #explanationDial, #loadingContainer {
+            &.invisible{
+                opacity: 0;
+            }
+        }
+        
+    }//step2
+    &.step3 {
+        #step1 {
+            z-index:                        0;
+        }
+        #step2 {
+            opacity: 0;
+            z-index: 0;
+        }
+        #step3 {
+            opacity: 1;
+            z-index: 50;
+        }
+    }
+}
+
+.cloud {
+    position:                               absolute;
+    .size;
+    top:                                    0;
+    background-color:                       transparent;
+    background-repeat:                      no-repeat;
+    background-size:                        contain;
+    mix-blend-mode:                         hard-light;
+    z-index:                                10;
+    .scale(1);
+}
+
+#cloud1 {
+    //background-position:                    200% top;
+    background-position:                    right top;
+    left:                                   10%; 
+    background-image:                       url('../img/intro/cloud1.png'); 
+    .animationSimple( animationBgPosition1 80000ms linear forwards 0ms 4 );
+}
+
+#cloud2 {
+    left: 0;
+    background-position:                    center top;
+    background-image:                       url('../img/intro/cloud2.png');
+    .animationSimple( animationBgPosition2 100300ms linear forwards 80ms 4 );
+} 
+#cloud3 {
+    background-position:                    left top;
+    background-image:                       url('../img/intro/cloud3.png');
+} 
+#cloud4 {
+    background-position:                    left top;
+    background-image:                       url('../img/intro/cloud4.png');
+}
+#cloud5 {
+    background-position:                    left top;
+    background-image:                       url('../img/intro/cloud5.png');
+}
+#cloud6 { 
+    //background-position:                    -122% top;
+    background-position:                    left top;
+    top:                                0%;
+    left:                               -40%;
+    background-image:                       url('../img/intro/cloud6.png');
+    .animationSimple( animationBgPosition6 68300ms linear forwards 2000ms 4 );
+}
+
+#logoIntro {
+    .size(100%,6rem);
+    .absoluteBottomLeft(9rem,0);
+    .usualBg;
+    background-image:               url('../img/intro/logo.png');
+    background-size:                contain;
+}
+
+#logoHome {
+    .size(5.25rem,5.25rem);
+    .absoluteTopLeft(2.8rem,2.8rem);
+    .usualBg;
+    background-image:               url('../img/intro/home.png');
+    background-size:                contain;
+}
+
+.step {
+    //background-color: indianred;
+}
+
+#step1 {
+    z-index:                        60;
+}
+.buttonIntro {
+    border:                         .2rem solid @colorNaranja;
+    background-color:               transparent;
+    border-radius:                  4rem;
+    .fontNormal;
+    font-size:                      1.65rem;
+    height:                         8.25rem;
+    line-height:                    8.25rem;
+    width:                          31.7rem;
+    text-align:                     center;
+    cursor:                         pointer;
+    color:                          @colorNaranja;
+    letter-spacing:                 0.2rem;
+    text-transform:                 uppercase;
+    //.transition( .5s all ease-in);
+    &:hover {
+        background-color:           @colorNaranja;
+        color:                      @grisBg;
+    }
+}
+#startContainer {
+    .absoluteBottomLeft(22.2rem,0);
+    width:                          100%;
+    text-align:                     center;
+    display:                        none;
+}
+
+#start {
+    display:                        inline-block;
+}
+
+#tituloIntro {
+    .absoluteTopLeft;
+    .size;
+    background-color:               rgba(43,43,43,0.6);
+    background-position:            center;
+    background-repeat:              no-repeat;
+    background-size:                contain;
+    mix-blend-mode:                 multiply;
+    //opacity: .9;
+    z-index:                        20;
+}
+
+#step2 {
+    z-index:                        50;
+    opacity:                        0;
+    .transition( opacity @timeFade ease-in @delayFadeStep2 );
+}
+
+#cajaExplicacion {
+    .size(41rem,46.8rem);
+    position:                       relative;
+    margin:                         10.8rem auto 0 auto;
+    text-align:                     center;
+    //overflow:                       hidden;
+}
+#explanation {
+    color:                          #f7f6e9;
+    .fontBold;
+    font-size:                      1.5rem;
+    margin-bottom:                  10.6rem;
+}
+
+#interior {
+    .absoluteTopLeft;
+    .size;
+    background-image:               url('../img/franja.svg');
+    background-color:               transparent;
+    background-position:            center;
+    background-repeat:              no-repeat;
+    background-size:                contain;
+    z-index:                        1;
+}
+
+#startPauseIntro {
+    float:                          right;
+     .button {
+        padding:                    0;
+        .size;
+        border:                     0;
+        background-color:           transparent;
+        outline:                    none;
+    }
+    .ico {
+        .size;
+        .absoluteTopLeft;
+        .usualBg;
+        background-size:                contain;
+        background-image:               url(../img/play.svg);
+        &.playing {
+            background-image:               url(../img/pause.svg);
+        }
+    }
+}
+
+#sintonizeIntro {
+    float:                          left;   
+}
+
+.outsidersExplanation {
+    position:                       absolute;
+    top:                            14.3rem;
+    color:                          white;
+    .fontMedium;
+    font-size:                      1.3rem;
+    line-height:                    1.8rem;
+    text-align:                     center;
+    width:                          26.2rem;
+    opacity:                        0;
+}
+#explanationDial{
+    left:                           -26rem;
+    .transition( opacity @timeFade ease-in @delayExplanation1Step2);
+}
+#explanationPause{
+    right:                           -26rem;
+    .transition( opacity @timeFade ease-in 600ms );
+    &.visible {
+        opacity:                    1;
+        #okPause{
+            opacity:                1;
+        }
+    }
+}
+
+.buttonExplanation {
+    color:                          @colorNaranja;
+    letter-spacing:                 0.2rem;
+    border:                         .2rem solid @colorNaranja;
+    height:                         4.6rem;
+    line-height:                    4.6rem;
+    display:                        block;
+    width:                          8.2rem;
+    margin:                         2rem auto 0 auto;
+    border-radius:                  3rem;
+    cursor:                         pointer;
+    opacity:                        0;
+    
+    &:hover{
+        background-color:           @colorNaranja;
+        color:                      white;
+    }
+}
+#okDial{
+    .transition( opacity @timeFade ease-in @delayExplanation1ButtonStep2);
+}
+#okPause {
+    .transition( opacity @timeFade ease-in 1400ms );
+}
+
+#startSintoniza {
+    opacity: 0;
+    text-align:                     center;
+    .absoluteBottomLeft(-2rem,0);
+    width:                          100%;
+    text-align:                     center;
+    .transition( opacity @timeFade ease-in 800ms );
+    &.visible {
+        opacity:                    1;
+    }
+}
+#sintoniza{
+    margin:                         0 auto .6rem auto;
+    //opacity:                        0;
+    
+}
+
+@iterations: 22;
+@timeAnimation: 5400ms;
+@delayAnimation: @timeAnimation / (@iterations *2);
+
+.mixin-loop (@i) when (@i > 0) {
+  li:nth-child(@{i}) {
+        webkit-animation-delay:     @i * @delayAnimation; /* Chrome, Safari, Opera */
+        animation-delay:            @i * @delayAnimation;
+  }
+  .mixin-loop(@i - 1);
+}
+
+#loadingContainer {
+    .absoluteBottomLeft(20%,0);
+    .size(100%,2rem);
+}
+#loading{
+    display:                        inline-block;
+    overflow:                       hidden;
+    text-align:                     center;
+    margin-right:                   1.4rem;
+    li {
+        .size(.2rem,1.2rem);
+        background-color:           @grisBg;
+        display:                    inline-block;
+        margin-left:                .3rem;
+        margin-top:                 .4rem;
+        margin-bottom:              -0.2rem;
+        .animationSimple( animationLoading @timeAnimation linear forwards infinite );
+    } //li
+    .mixin-loop(@iterations);
+    
+} //loading
+#sintonizando {
+    display:                        inline-block;
+    color:                          #949494;
+    letter-spacing:                 .2rem;
+    .fontLight;
+    font-size:                      1.71rem;
+    line-height:                    2rem;
+    text-transform:                 uppercase;
+}
+
+#step3{
+    z-index:                        30;
+    opacity:                        0;
+    .transition( opacity @timeFade ease-in @delayFadeStep2 );
+}
+#explanationAge {
+    .fontNormal;
+    color:                          @colorClaro1;
+    text-align:                     left;
+    font-size:                      1.6rem;
+    line-height:                    2rem;
+    width:                          32.1rem;
+    margin:                         17rem auto 6.4rem auto;  
+}
+.select { 
+    margin:                         0 auto 5.4rem auto;
+    //resto en select.less
+    z-index:                        50;
+}
+
+#startSintonizaAge {
+    text-align:                     center;
+    .absoluteBottomLeft(26rem,0);
+    width:                          100%;
+    text-align:                     center;
+    z-index:                        10;
+}
+#sintonizaAge {
+    margin:                         0 auto;
+    transition:                     opacity @timeFade linear;
+    &.hide {
+        opacity:                    0;
+    }
+    &.active {
+        color:                      @grisBg;
+        background-color:           @colorNaranja;
+    }
+}
+
+//intro------------------------------
+//radio------------------------------
+#radio {
+    //display:                          none;
+    background-color:                   #f2f1e4;
+    opacity:                            0;
+    transition:                         opacity @timeFade ease-in;
+    z-index:                            10;
+    //margin:                         0 auto;
+    //padding-bottom: 71%;
+}
+
+#containerRight {
+    float:                          right;
+    overflow:                       hidden;
+    width:                          43.6rem;
+    position:                       relative;
+    //margin:                         8.2vw 6.7vw 0;
+    margin:                         8.4rem 7rem 0;
+}
+
+#content{
+    //.absoluteTopRight( 8.2vw,6.7vw );
+    .size( 100%,11.4rem );
+    padding-right:                  0;
+    overflow:                       hidden;
+    background:                     url('../img/bgDial.png') no-repeat left center @colorClaro1;
+    //background-size:                contain;
+    background-size:                cover;
+    margin-bottom:                  6.1rem;
+    .box-shadow( inset 0 0 1.6rem 0.1em rgba(0,0,0,0.2) );
+}
+
+#dialLine {
+    .absoluteTopLeft;
+    .size( 2px,11.4rem );
+    //background:                     url('../img/lineaDial.png') no-repeat center center transparent;
+    background-color:               @colorNaranja;
+    //background-size:                cover;
+    cursor:                         pointer;
+    .box-shadow( 0.2rem -0.3rem 0.8rem 0 rgba(31,31,31,0.3) );   
+}
+
+#listening {
+    .size(100%,auto);
+    background-color:               @colorClaro1;
+    border-bottom:                  .1rem solid @colorGris1;
+    border-top:                     .1rem solid @colorGris1;
+    //padding:                        1.31vw;
+    padding:                        1.4rem;
+    margin-bottom:                  2rem;
+    strong {
+        .fontBold;
+        font-size:                  1.4rem;
+        color:                      @colorGris1;
+        margin-bottom:              .9vw;
+        display:                    block;
+    }
+}
+
+#currentTitle {
+        font-size:                  1.8rem;
+
+}
+@sizeNextMatch:                 1.17rem;
+
+#nextMatch {    
+    .fontLight;
+    font-size:                      1.26rem;
+    //margin-bottom:                  6vw;
+    margin-bottom:                  3.5rem;
+    text-align:                     right;
+    p {
+        display:                    inline-block;
+        width:                      auto;
+        text-transform:             uppercase;
+        position:                   relative;
+        margin-right:               0.2vw;
+        cursor:                     pointer;
+        letter-spacing:             0.1rem;
+        &:hover {
+            text-decoration:        underline;
+        }
+        &:focus, &:click{
+            text-decoration:        none;
+        }
+//        &:after{
+//            content:                '';
+//            .size(@sizeNextMatch,1.17vh);
+//            .absoluteTopRight(0,-1.5vw);
+//            background:             url('../img/arrowNext.png') no-repeat left center transparent;
+//            background-size:        contain;
+//        }
+        
+    }
+}
+
+.arrowNext{
+    //.size(@sizeNextMatch,1.17vh);
+    //.absoluteTopRight(0,-1.5vw);
+    //background:             url('../img/arrowNext.png') no-repeat left center transparent;
+    //background-size:        contain;
+    .size(auto,1rem);
+}
+
+.interactionButton {
+    //.size( 15vw,15vw );
+    .size( 15.3rem,15.3rem );
+    position:                       relative;
+    display:                        inline-block;
+    //bottom:                         24vw;
+    background-image:               url(../img/circulos.svg);
+    .usualBg;
+    background-size:                contain;
+}
+#knobBG {
+    float:                          left;
+}
+
+#knob {
+    .absoluteTopLeft;
+    .size;
+    .usualBg;
+    background-image:               url('../img/franja.svg');
+    background-size:                contain;
+    z-index:                        1;
+}
+#decadeSector{
+    .absoluteTopLeft;
+    .size;
+    .usualBg;
+    background-image:               url('../img/franja.svg');
+    background-size:                contain;
+    transition:                     transform .6s ease-out .1s;
+}
+.transitionOn div{
+        transition:                 transform .6s ease-out;
+}
+
+#startPause{
+    //right:                          6.8vw;
+    float:                          right;
+    .button {
+        padding:                    0;
+        .size;
+        border:                     0;
+        background-color:           transparent;
+        outline:                    none;
+    }
+    .ico {
+        .size;
+        .absoluteTopLeft;
+        .usualBg;
+        background-size:                contain;
+        background-image:               url(../img/play.svg);
+        &.playing {
+            background-image:               url(../img/pause.svg);
+        }
+    }
+    
+}
+
+#speaker{
+    //.absoluteTopLeft( 17.6vw,5.8vw);
+    .absoluteTopLeft( 17.9rem,5.93rem);
+    //.size( 39vw,36vw );
+    //.size( 40rem,36.8rem );
+    .size( 40rem,52.4rem);
+    background-image:               url(../img/speaker.png);
+    background-color:               transparent;
+    background-position:            center top;
+    background-repeat:              no-repeat;
+    background-size:                contain;
+}
+#logoLibero {
+    //.size(100%,4vw);
+    .size(100%,4.1rem);
+    
+    //.absoluteBottomLeft( -12.6vw,0 );
+    .absoluteBottomLeft;
+    background-image:               url(../img/logoLibero.png);
+    background-color:               transparent;
+    background-position:            center bottom;
+    background-repeat:              no-repeat;
+    background-size:                contain;
+ 
+}
+
+#buttonBox {
+    .flex;
+    flex-flow: row nowrap; justify-content: space-between; align-items: flex-end; align-content: stretch;
+    width:                          100%;
+    //padding-top:                    4.37rem;
+    height:                         15rem;
+}
+#social {
+    width:                          51%;
+    //.flex;
+    //flex-flow: row wrap; justify-content: flex-end; align-items: flex-end; align-content: stretch;
+    .absoluteBottomLeft(-0.1rem,0);
+
+    li {
+        .size(4.9rem,4.9rem);
+        margin-left:                1.94rem;
+        //display:                    block;
+        display:                    inline-block;
+        position:                   relative;
+        float:                      right;
+        svg{
+            //.absoluteBottomRight(-0.1rem,0);
+          path{
+            .transition(all .4s ease-in );
+            }  
+        } //svg
+        &:hover svg path{
+            fill:                   @colorNaranja;
+        }
+    }
+}
+#fb {
+    //background-image:               url(../img/fb.svg);
+
+}
+
+#goTo {
+    //float:                          right;
+    .absoluteBottomRight;
+    li:first-child{
+        margin-bottom:              1.63rem;
+    }
+}
+
+.buttonRound {
+    border:                         .2rem solid @colorGris2;
+    background-color:               @colorGris2;
+    border-radius:                  2rem;
+    .fontLight;
+    font-size:                      1.3rem;
+    height:                         4rem;
+    width:                          14.9rem;
+    text-align:                     center;
+    line-height:                    4rem;
+    cursor:                         pointer;
+    background:                     url(../img/bgButton.svg) no-repeat @colorGris2 center center;
+    background-size:                0 0;
+    //.transitionTriple( background-color .5s ease-in,border-color .5s ease-in, color .2s linear );
+    .transition( .5s all ease-in);
+    letter-spacing:                 0.1rem;
+     //background: linear-gradient(226deg, #f2f1e4 0%, #f2f1e4 100%, #05C1FF 100%); /* w3c */ 
+    //background-size: 0;
+    
+    &:hover {
+        //.animationSimple( animationBotonHover 700ms ease-out forwards 100ms 1 );
+        // background: linear-gradient(226deg, #f2f1e4 0%, #f2f1e4 0%, #05C1FF 0%, #05C1FF 100%); /* w3c */ 
+      //  background-size:                1000%;
+        border-color:               @colorNaranja;
+        background-color:           @colorNaranja;
+        //background-size: 600% 600%;
+        color:                      white;
+    }
+}
+@media (min-width : 614px) and (min-height : 460px)  { 
+    html {
+        font-size: 6px;
+    }
+}
+@media (min-width : 716px) and (min-height : 537px)  { 
+    html {
+        font-size: 7px;
+    } 
+}
+@media (min-width : 819px) and (min-height : 614px)  { 
+    html {
+        font-size: 8px;
+    }
+}
+@media (min-width : 921px) and (min-height : 691px)  { 
+    html {
+        font-size: 9px;    
+    }
+}
+@media (min-width : 1024px) and (min-height : 768px)  { 
+    html { 
+        font-size: 10px;
+    }
+}
+@media (min-width : 1126px) and (min-height : 844px)  { 
+    html {
+        font-size: 11px;    
+    }
+}
+@media (min-width : 1228px) and (min-height : 921px)  { 
+    html {
+        font-size: 12px;
+    }
+}
+@media (min-width : 1331px) and (min-height : 998px)  { 
+    html {
+        font-size: 13px;
+    }
+}
+@media (min-width : 1433px) and (min-height : 1075px)  { 
+    html {
+        font-size: 14px;
+    }
+}
+@media (min-width : 1536px) and (min-height : 1152px) {
+    html {
+        font-size: 15px;
+    }
+}
